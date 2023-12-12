@@ -10,7 +10,7 @@ class TrainStationsUseCases(private val trainStationsPort: TrainStationsPort) {
     fun findTrainStationComingDepartures(trainStationId: String): List<TrainDeparture> {
         return trainStationsPort
             .findTrainStationTimetable(trainStationId)
-            .trainDepartures
+            .dailyTrainDepartures
             .filter { trainDeparture ->
                 trainDeparture.departureTime.isAfter(OffsetDateTime.now())
             }

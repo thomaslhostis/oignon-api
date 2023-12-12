@@ -4,7 +4,7 @@ import java.time.OffsetDateTime
 
 class TrainStationTimetable(
     val trainStation: TrainStation,
-    val trainDepartures: List<TrainDeparture>,
+    val dailyTrainDepartures: List<TrainDeparture>,
 ) {
     class TrainDeparture(
         val trainNumber: String,
