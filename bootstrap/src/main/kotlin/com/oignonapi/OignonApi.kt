@@ -1,4 +1,4 @@
-package com.github.thomaslhostis.oignonapi
+package com.oignonapi
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
