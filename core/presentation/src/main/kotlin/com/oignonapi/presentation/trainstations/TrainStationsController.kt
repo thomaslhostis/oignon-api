@@ -4,7 +4,8 @@ import com.oignonapi.application.trainstations.TrainStationsUseCases
 import com.oignonapi.domain.trainstations.TrainStationsPort
 import org.springframework.web.bind.annotation.*
 
-@RestController("train-stations")
+@RestController
+@RequestMapping("train-stations")
 class TrainStationsController(
     private val trainStationsPort: TrainStationsPort,
     private val trainStationsUseCases: TrainStationsUseCases,

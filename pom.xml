@@ -21,11 +21,13 @@
         <module>bootstrap</module>
         <module>core</module>
         <module>spring-boot-extensions</module>
+        <module>spring-boot-extensions/mongo-spring-boot-starter</module>
     </modules>
 
     <properties>
         <java.version>17</java.version>
         <kotlin.version>1.9.20</kotlin.version>
+        <mongo-java-server.version>1.44.0</mongo-java-server.version>
     </properties>
 
     <dependencies>
@@ -45,7 +47,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- Structure -->
             <dependency>
                 <groupId>com.github.thomaslhostis.oignonapi</groupId>
                 <artifactId>bootstrap</artifactId>
@@ -74,6 +75,16 @@
             <dependency>
                 <groupId>com.github.thomaslhostis.oignonapi.core</groupId>
                 <artifactId>infrastructure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.bwaldvogel</groupId>
+                <artifactId>mongo-java-server</artifactId>
+                <version>${mongo-java-server.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.thomaslhostis.oignonapi.spring-boot-extensions</groupId>
+                <artifactId>mongo-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
         </dependencies>
