@@ -1,6 +1,6 @@
 package com.oignonapi.infrastructure.partners.xyz
 
-import com.oignonapi.domain.trainstations.TrainStationTimetable
+import com.oignonapi.domain.trainstations.TrainStationTimetable.TrainDeparture
 import java.time.LocalDateTime
 import java.time.ZoneId
 
@@ -9,12 +9,10 @@ class XyzDailyDepartureTimeResponse(
     val departureTime: LocalDateTime,
     val departureZoneId: ZoneId,
 ) {
-    fun mapToTrainDeparture(): TrainStationTimetable.TrainDeparture {
-        return TrainStationTimetable.TrainDeparture(
-            trainCode,
-            departureTime
-                .atZone(departureZoneId)
-                .toOffsetDateTime()
-        )
-    }
+    fun mapToTrainDeparture() = TrainDeparture(
+        trainCode,
+        departureTime
+            .atZone(departureZoneId)
+            .toOffsetDateTime()
+    )
 }

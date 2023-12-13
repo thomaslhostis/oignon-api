@@ -6,8 +6,10 @@ import org.springframework.stereotype.Component
 import java.time.OffsetDateTime
 
 @Component
-class TrainStationsUseCases(private val trainStationsPort: TrainStationsPort) {
-    fun findTrainStationComingDepartures(trainStationId: String): List<TrainDeparture> {
+class TrainStationsUseCases(
+    private val trainStationsPort: TrainStationsPort,
+) {
+    fun findTrainStationUpcomingDepartures(trainStationId: String): List<TrainDeparture> {
         return trainStationsPort
             .findTrainStationTimetable(trainStationId)
             .dailyTrainDepartures

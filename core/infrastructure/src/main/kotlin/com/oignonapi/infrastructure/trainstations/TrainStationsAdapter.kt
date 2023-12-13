@@ -1,6 +1,7 @@
 package com.oignonapi.infrastructure.trainstations
 
 import com.oignonapi.domain.trainstations.TrainStation
+import com.oignonapi.domain.trainstations.TrainStationNotFoundException
 import com.oignonapi.domain.trainstations.TrainStationTimetable
 import com.oignonapi.domain.trainstations.TrainStationsPort
 import com.oignonapi.infrastructure.partners.xyz.XyzClient
@@ -22,7 +23,7 @@ class TrainStationsAdapter(
         return trainStationsMongoRepository
             .findByIdOrNull(trainStationId)
             ?.mapToDomainInstance()
-            ?: throw RuntimeException("La station de train associée à l'identifiant $trainStationId n'existe pas")
+            ?: throw TrainStationNotFoundException(trainStationId)
     }
 
     override fun findTrainStations(): List<TrainStation> {
@@ -33,13 +34,13 @@ class TrainStationsAdapter(
 
     override fun findTrainStationTimetable(trainStationId: String): TrainStationTimetable {
         val trainStation = findTrainStation(trainStationId)
-        val trainDepartures = xyzClient
+        val dailyDepartureTimes = xyzClient
             .findDailyDepartureTimes(trainStationId)
             .map(XyzDailyDepartureTimeResponse::mapToTrainDeparture)
 
         return TrainStationTimetable(
             trainStation,
-            trainDepartures
+            dailyDepartureTimes
         )
     }
 }

@@ -33,11 +33,11 @@ class TrainStationsController(
     }
 
     @GetMapping("{trainStationId}/coming-departures")
-    fun getTrainStationComingDepartures(
+    fun getTrainStationUpcomingDepartures(
         @PathVariable("trainStationId") trainStationId: String,
     ): List<TrainDepartureResponse> {
         return trainStationsUseCases
-            .findTrainStationComingDepartures(trainStationId)
+            .findTrainStationUpcomingDepartures(trainStationId)
             .map(::TrainDepartureResponse)
     }
 }
