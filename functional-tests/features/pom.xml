@@ -5,12 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.github.thomaslhostis.oignonapi</groupId>
-        <artifactId>tests</artifactId>
+        <artifactId>functional-tests</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>com.github.thomaslhostis.oignonapi.tests</groupId>
-    <artifactId>functional-tests</artifactId>
+    <artifactId>features</artifactId>
+    <!--    <packaging>jar</packaging>-->
 
     <dependencies>
         <dependency>
@@ -42,4 +43,20 @@
             <version>7.15.0</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
