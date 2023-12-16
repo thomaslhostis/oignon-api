@@ -25,10 +25,13 @@
     </modules>
 
     <properties>
+        <!-- Version de Java et Kotlin -->
         <java.version>17</java.version>
         <kotlin.version>1.9.20</kotlin.version>
-        <mongo-java-server.version>1.44.0</mongo-java-server.version>
+        <!-- Version des librairies triées par ordre alphabétique -->
+        <junit-jupiter.version>5.10.1</junit-jupiter.version>
         <kotest.version>5.8.0</kotest.version>
+        <mongo-java-server.version>1.44.0</mongo-java-server.version>
     </properties>
 
     <dependencies>
@@ -43,6 +46,12 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.kotest</groupId>

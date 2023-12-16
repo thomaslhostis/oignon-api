@@ -4,8 +4,10 @@ data class TrainStation(
     val id: String,
     val name: String,
 ) {
-    companion object Validation {
+    companion object {
         fun hasOnlyUniqueIds(trainStations: List<TrainStation>) =
-            trainStations.map(TrainStation::id).toSet().size == trainStations.size
+            trainStations.map(TrainStation::id)
+                .toSet()
+                .size == trainStations.size
     }
 }
