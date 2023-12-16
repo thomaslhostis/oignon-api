@@ -8,6 +8,10 @@ import org.springframework.data.mongodb.core.mapping.Document
 class TrainStationDocument(
     @Id val id: String,
     val name: String,
+//    @CreatedDate
+//    val createdOn: OffsetDateTime,
+//    @LastModifiedDate
+//    val lastUpdatedOn: OffsetDateTime
 ) {
     constructor(trainStation: TrainStation) : this(
         trainStation.id,

@@ -21,7 +21,7 @@
         <module>bootstrap</module>
         <module>core</module>
         <module>spring-boot-extensions</module>
-        <module>spring-boot-extensions/mongo-spring-boot-starter</module>
+        <module>tests</module>
     </modules>
 
     <properties>
