@@ -2,7 +2,7 @@ package com.oignonapi.presentation.trainstations
 
 import com.oignonapi.domain.trainstations.TrainStation
 
-class TrainStationResponse(
+data class TrainStationResponse(
     val id: String,
     val name: String,
 ) {

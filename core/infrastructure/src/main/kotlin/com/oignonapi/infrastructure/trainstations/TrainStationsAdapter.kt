@@ -1,9 +1,9 @@
 package com.oignonapi.infrastructure.trainstations
 
 import com.oignonapi.domain.trainstations.TrainStation
-import com.oignonapi.domain.trainstations.TrainStationNotFoundException
 import com.oignonapi.domain.trainstations.TrainStationTimetable
 import com.oignonapi.domain.trainstations.TrainStationsPort
+import com.oignonapi.domain.trainstations.exceptions.TrainStationNotFoundException
 import com.oignonapi.infrastructure.partners.xyz.XyzClient
 import com.oignonapi.infrastructure.partners.xyz.XyzDailyDepartureTimeResponse
 import org.springframework.data.repository.findByIdOrNull
@@ -17,13 +17,6 @@ class TrainStationsAdapter(
     override fun saveTrainStations(trainStations: List<TrainStation>) {
         val trainStationDocuments = trainStations.map(::TrainStationDocument)
         trainStationsMongoRepository.saveAll(trainStationDocuments)
-    }
-
-    override fun findTrainStation(trainStationId: String): TrainStation {
-        return trainStationsMongoRepository
-            .findByIdOrNull(trainStationId)
-            ?.mapToDomainInstance()
-            ?: throw TrainStationNotFoundException(trainStationId)
     }
 
     override fun findTrainStations(): List<TrainStation> {
@@ -42,5 +35,11 @@ class TrainStationsAdapter(
             trainStation,
             dailyDepartureTimes
         )
+    }
+    private fun findTrainStation(trainStationId: String): TrainStation {
+        return trainStationsMongoRepository
+            .findByIdOrNull(trainStationId)
+            ?.mapToDomainInstance()
+            ?: throw TrainStationNotFoundException(trainStationId)
     }
 }

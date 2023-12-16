@@ -1,8 +1,8 @@
 package com.oignonapi.functionaltests.features.trainstations
 
 import com.oignonapi.domain.trainstations.TrainStation
-import com.oignonapi.infrastructure.trainstations.TrainStationDocument
 import com.oignonapi.presentation.trainstations.TrainStationRequest
+import com.oignonapi.presentation.trainstations.TrainStationResponse
 import org.springframework.stereotype.Component
 
 @Component
@@ -23,9 +23,8 @@ class TrainStationsRecord(
             trainStation.name,
         )
     }
-
-    fun buildTrainStationDocuments() = trainStations.map { trainStation ->
-        TrainStationDocument(
+    fun buildTrainStationResponses() = trainStations.map { trainStation ->
+        TrainStationResponse(
             trainStation.id,
             trainStation.name,
         )

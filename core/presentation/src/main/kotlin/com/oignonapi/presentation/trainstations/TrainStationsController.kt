@@ -17,20 +17,12 @@ class TrainStationsController(
             .map(::TrainStationResponse)
     }
 
-    @GetMapping("{trainStationId}")
-    fun getTrainStation(
-        @PathVariable("trainStationId") trainStationId: String,
-    ): TrainStationResponse {
-        val trainStation = trainStationsPort.findTrainStation(trainStationId)
-        return TrainStationResponse(trainStation)
-    }
-
     @PutMapping
     fun uploadTrainStations(
         @RequestBody trainStationRequests: List<TrainStationRequest>,
     ) {
         val trainStations = trainStationRequests.map(TrainStationRequest::mapToDomainInstance)
-        trainStationsPort.saveTrainStations(trainStations)
+        trainStationsUseCases.saveTrainStations(trainStations)
     }
 
     @GetMapping("{trainStationId}/coming-departures")

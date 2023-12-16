@@ -1,4 +1,4 @@
-package com.oignonapi.domain.trainstations
+package com.oignonapi.domain.trainstations.exceptions
 
 import com.oignonapi.domain.exceptions.NotFoundException
 
