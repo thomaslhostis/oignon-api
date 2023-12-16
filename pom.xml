@@ -20,7 +20,7 @@
     <modules>
         <module>bootstrap</module>
         <module>core</module>
-        <module>spring-boot-extensions</module>
+        <module>extensions</module>
         <module>tests</module>
     </modules>
 
@@ -28,6 +28,7 @@
         <java.version>17</java.version>
         <kotlin.version>1.9.20</kotlin.version>
         <mongo-java-server.version>1.44.0</mongo-java-server.version>
+        <kotest.version>5.8.0</kotest.version>
     </properties>
 
     <dependencies>
@@ -43,6 +44,12 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.kotest</groupId>
+            <artifactId>kotest-assertions-core-jvm</artifactId>
+            <version>${kotest.version}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -54,7 +61,7 @@
             </dependency>
             <dependency>
                 <groupId>com.github.thomaslhostis.oignonapi</groupId>
-                <artifactId>spring-boot-extensions</artifactId>
+                <artifactId>extensions</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

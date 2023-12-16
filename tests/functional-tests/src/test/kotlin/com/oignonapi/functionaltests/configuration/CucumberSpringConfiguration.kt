@@ -1,5 +1,6 @@
 package com.oignonapi.functionaltests.configuration
 
+import io.cucumber.java.Before
 import io.cucumber.spring.CucumberContextConfiguration
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
@@ -11,4 +12,11 @@ import org.springframework.test.context.ActiveProfiles
 )
 @CucumberContextConfiguration
 @ActiveProfiles(value = ["features"])
-class CucumberSpringConfiguration
+class CucumberSpringConfiguration(
+    private val contextCleaner: ContextCleaner,
+) {
+    @Before
+    fun cleanupContext() {
+        contextCleaner.cleanContext()
+    }
+}
