@@ -45,10 +45,10 @@ jobs:
           java-version: 17
           distribution: temurin
           cache: maven
-      - name: Start MongoDB 6.0
+      - name: Start MongoDB 7
         uses: supercharge/mongodb-github-action@1.10.0
         with:
-          mongodb-version: 6.0
+          mongodb-version: 7-jammy
       - name: Run MongoDB integration functional tests
         run: |
           mvn clean install -DskipTests
