@@ -31,7 +31,9 @@ jobs:
           distribution: temurin
           cache: maven
       - name: Tests
-        run: mvn clean test --projects 'functional-tests/mocked-tests-launcher'
+        run: |
+          mvn clean install -DskipTests
+          mvn test --projects 'functional-tests/mocked-tests-launcher'
 
   mongodb-integration-functional-tests:
     runs-on: ubuntu-latest
@@ -57,7 +59,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y mongodb-mongosh
       - name: Tests
-        run: mvn test --projects 'functional-tests/mongodb-integration-tests-launcher'
+        run: |
+          mvn clean install -DskipTests
+          mvn test --projects 'functional-tests/mongodb-integration-tests-launcher'
 #        run: |
 #          mvn clean install -Dmaven.test.skip=true -Dmaven.javadoc.skip=true -Djacoco.skip=true
 #          # Le `&` est important pour ne pas bloquer le thread, d'où le `sleep 30` juste en dessous
