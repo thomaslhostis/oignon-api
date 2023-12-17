@@ -1,4 +1,4 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/functional_tests_database
+      uri: mongodb://localhost:27018/functional_tests_database
