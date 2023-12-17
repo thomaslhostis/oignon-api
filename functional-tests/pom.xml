@@ -15,8 +15,8 @@
 
     <modules>
         <module>features</module>
-        <module>mongodb-integration-tests-launcher</module>
         <module>mocked-tests-launcher</module>
+        <module>mongodb-integration-tests-launcher</module>
     </modules>
 
     <properties>

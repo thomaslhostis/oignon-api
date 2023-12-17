@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Continuous testing
 
 on:
   push:
@@ -7,17 +7,49 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  unit-tests:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-    - name: Test with Maven
-      run: mvn clean test
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: temurin
+          cache: maven
+      - name: Run unit tests
+        run: mvn clean test --projects '!functional-tests,!functional-tests/features,!functional-tests/mocked-tests-launcher,!functional-tests/mongodb-integration-tests-launcher'
+
+  mocked-functional-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: temurin
+          cache: maven
+      - name: Run mocked functional tests
+        run: |
+          mvn clean install -DskipTests
+          mvn test --projects 'functional-tests/mocked-tests-launcher'
+
+  mongodb-integration-functional-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: temurin
+          cache: maven
+      - name: Start MongoDB 6.0
+        uses: supercharge/mongodb-github-action@1.10.0
+        with:
+          mongodb-version: 6.0
+      - name: Run MongoDB integration functional tests
+        run: |
+          mvn clean install -DskipTests
+          mvn test --projects 'functional-tests/mongodb-integration-tests-launcher'

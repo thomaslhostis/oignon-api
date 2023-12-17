@@ -16,7 +16,7 @@ import org.springframework.test.context.ActiveProfiles
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.oignonapi.functionaltests")
 @ConfigurationParameter(key = FEATURES_PROPERTY_NAME, value = "../features/src/test/resources")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, json:target/cucumber.json")
-class FunctionalTestsWithMongoDb {
+class MongoDbFunctionalTests {
     @SpringBootTest(classes = [com.oignonapi.OignonApi::class], webEnvironment = RANDOM_PORT)
     @CucumberContextConfiguration
     @ActiveProfiles(value = ["features", "mongo"])
