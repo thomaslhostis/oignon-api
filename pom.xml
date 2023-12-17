@@ -29,7 +29,9 @@
         <java.version>17</java.version>
         <kotlin.version>1.9.20</kotlin.version>
         <!-- Version des librairies triées par ordre alphabétique -->
+        <cucumber.version>7.15.0</cucumber.version>
         <junit-jupiter.version>5.10.1</junit-jupiter.version>
+        <junit-platform-suite.version>1.10.1</junit-platform-suite.version>
         <kotest.version>5.8.0</kotest.version>
         <mongo-java-server.version>1.44.0</mongo-java-server.version>
     </properties>
@@ -63,6 +65,7 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Structure -->
             <dependency>
                 <groupId>com.github.thomaslhostis.oignonapi</groupId>
                 <artifactId>bootstrap</artifactId>
@@ -94,14 +97,39 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.github.thomaslhostis.oignonapi.spring-boot-extensions</groupId>
+                <artifactId>mongo-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- Librairies -->
+            <dependency>
                 <groupId>de.bwaldvogel</groupId>
                 <artifactId>mongo-java-server</artifactId>
                 <version>${mongo-java-server.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.thomaslhostis.oignonapi.spring-boot-extensions</groupId>
-                <artifactId>mongo-spring-boot-starter</artifactId>
-                <version>${project.version}</version>
+                <groupId>org.junit.platform</groupId>
+                <artifactId>junit-platform-suite</artifactId>
+                <version>${junit-platform-suite.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <version>${cucumber.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-spring</artifactId>
+                <version>${cucumber.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-junit-platform-engine</artifactId>
+                <version>${cucumber.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>

@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.github.thomaslhostis.oignonapi.tests</groupId>
-    <artifactId>mongodb-integration</artifactId>
+    <artifactId>mocked-tests-launcher</artifactId>
 
     <dependencies>
         <dependency>
