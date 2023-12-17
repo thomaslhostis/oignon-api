@@ -15,6 +15,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: 17
+          distribution: temurin
           cache: maven
       - name: Tests
         run: mvn clean test --projects '!functional-tests,!functional-tests/features,!functional-tests/mocked-tests-launcher,!functional-tests/mongodb-integration-tests-launcher'
@@ -27,6 +28,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: 17
+          distribution: temurin
           cache: maven
       - name: Tests
         run: mvn clean test --projects 'functional-tests/mocked-tests-launcher'
@@ -39,6 +41,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: 17
+          distribution: temurin
           cache: maven
       - uses: supercharge/mongodb-github-action@1.3.0
         with:
