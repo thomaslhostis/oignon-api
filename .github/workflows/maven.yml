@@ -50,7 +50,7 @@ jobs:
           mongodb-version: 4.2
       # Il est désormais nécessaire d'installer le Shell MongoDB à la main :
       # https://github.com/actions/runner-images/issues/6626
-      - name: Install mongosh
+      #      - name: Install mongosh
       #        run: |
       #          sudo apt-get update
       #          sudo apt-get install -y wget gnupg
