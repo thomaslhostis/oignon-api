@@ -2,6 +2,7 @@ package com.oignonapi.presentation.trainstations
 
 import com.oignonapi.application.trainstations.TrainStationsUseCases
 import com.oignonapi.domain.trainstations.TrainStationsPort
+import org.springframework.http.HttpStatus.NO_CONTENT
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -18,6 +19,7 @@ class TrainStationsController(
     }
 
     @PutMapping
+    @ResponseStatus(NO_CONTENT)
     fun uploadTrainStations(
         @RequestBody trainStationRequests: List<TrainStationRequest>,
     ) {
@@ -25,7 +27,7 @@ class TrainStationsController(
         trainStationsUseCases.saveTrainStations(trainStations)
     }
 
-    @GetMapping("{trainStationId}/coming-departures")
+    @GetMapping("{trainStationId}/upcoming-departures")
     fun getTrainStationUpcomingDepartures(
         @PathVariable("trainStationId") trainStationId: String,
     ): List<TrainDepartureResponse> {

@@ -11,6 +11,7 @@
 
     <groupId>com.github.thomaslhostis.oignonapi.tests</groupId>
     <artifactId>features</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
@@ -20,6 +21,21 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <!-- Permet d'accéder aux nominaux -->
+        <dependency>
+            <groupId>com.github.thomaslhostis.oignonapi.core</groupId>
+            <artifactId>domain</artifactId>
+            <version>${project.parent.version}</version>
+            <classifier>tests</classifier>
+            <type>test-jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.github.thomaslhostis.oignonapi.core</groupId>
+            <artifactId>infrastructure</artifactId>
+            <version>${project.parent.version}</version>
+            <classifier>tests</classifier>
+            <type>test-jar</type>
         </dependency>
     </dependencies>
 

@@ -9,12 +9,12 @@ class XyzClient(
 ) {
     fun findDailyDepartureTimes(
         trainStationId: String,
-    ): List<XyzDailyDepartureTimeResponse> {
+    ): List<XyzTrainDepartureResponse> {
 
         return xyzWebClient.get()
             .uri("daily-departure-times?trainStationId=$trainStationId")
             .retrieve()
-            .bodyToMono(Array<XyzDailyDepartureTimeResponse>::class.java)
+            .bodyToMono(Array<XyzTrainDepartureResponse>::class.java)
             .block()
             ?.toList()
 
