@@ -30,7 +30,7 @@ jobs:
           java-version: 17
           distribution: temurin
           cache: maven
-      - name: Run mocked functional tests
+      - name: Run functional tests
         run: |
           mvn clean install -DskipTests
           mvn test --projects 'functional-tests/features'
