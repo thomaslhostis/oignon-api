@@ -20,7 +20,7 @@ jobs:
       - name: Run unit tests
         run: mvn clean test --projects '!functional-tests,!functional-tests/features,!functional-tests/with-mongodb'
 
-  mocked-functional-tests:
+  functional-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -35,7 +35,7 @@ jobs:
           mvn clean install -DskipTests
           mvn test --projects 'functional-tests/features'
 
-  mongodb-integration-functional-tests:
+  functional-tests-with-mongodb:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
