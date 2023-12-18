@@ -5,7 +5,7 @@ import com.oignonapi.domain.trainstations.TrainStationTimetable
 import com.oignonapi.domain.trainstations.TrainStationsPort
 import com.oignonapi.domain.trainstations.exceptions.TrainStationNotFoundException
 import com.oignonapi.infrastructure.partners.xyz.XyzClient
-import com.oignonapi.infrastructure.partners.xyz.XyzDailyDepartureTimeResponse
+import com.oignonapi.infrastructure.partners.xyz.XyzTrainDepartureResponse
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Component
 
@@ -29,7 +29,7 @@ class TrainStationsAdapter(
         val trainStation = findTrainStation(trainStationId)
         val dailyDepartureTimes = xyzClient
             .findDailyDepartureTimes(trainStationId)
-            .map(XyzDailyDepartureTimeResponse::mapToTrainDeparture)
+            .map(XyzTrainDepartureResponse::mapToTrainDeparture)
 
         return TrainStationTimetable(
             trainStation,

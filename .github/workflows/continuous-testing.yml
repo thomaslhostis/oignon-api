@@ -1,0 +1,55 @@
+name: Continuous testing
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: temurin
+          cache: maven
+      - name: Run unit tests
+        run: mvn clean test --projects '!functional-tests,!functional-tests/features,!functional-tests/with-mongodb'
+
+  mocked-functional-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: temurin
+          cache: maven
+      - name: Run mocked functional tests
+        run: |
+          mvn clean install -DskipTests
+          mvn test --projects 'functional-tests/features'
+
+  mongodb-integration-functional-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: temurin
+          cache: maven
+      - name: Start MongoDB 7
+        uses: supercharge/mongodb-github-action@1.10.0
+        with:
+          mongodb-version: 7-jammy
+      - name: Run MongoDB integration functional tests
+        run: |
+          mvn clean install -DskipTests
+          mvn test --projects 'functional-tests/with-mongodb'

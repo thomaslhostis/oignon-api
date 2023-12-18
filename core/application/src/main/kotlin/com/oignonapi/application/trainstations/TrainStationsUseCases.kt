@@ -13,6 +13,7 @@ class TrainStationsUseCases(
     fun saveTrainStations(trainStations: List<TrainStation>) {
         if (TrainStation.hasOnlyUniqueIds(trainStations)) {
             trainStationsPort.saveTrainStations(trainStations)
+
         } else {
             throw IllegalArgumentException(
                 "L'identifiant des stations de trains doit être unique"

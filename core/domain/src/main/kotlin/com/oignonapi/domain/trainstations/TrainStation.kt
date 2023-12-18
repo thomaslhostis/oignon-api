@@ -4,7 +4,7 @@ data class TrainStation(
     val id: String,
     val name: String,
 ) {
-    companion object {
+    companion object Validation {
         fun hasOnlyUniqueIds(trainStations: List<TrainStation>) =
             trainStations.map(TrainStation::id)
                 .toSet()
