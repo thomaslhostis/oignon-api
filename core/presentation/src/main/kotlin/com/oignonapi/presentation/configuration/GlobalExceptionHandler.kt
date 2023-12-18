@@ -1,7 +1,8 @@
 package com.oignonapi.presentation.configuration
 
 import com.oignonapi.domain.exceptions.NotFoundException
-import org.springframework.http.HttpStatus.*
+import org.springframework.http.HttpStatus.BAD_REQUEST
+import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -32,17 +33,5 @@ class GlobalExceptionHandler : ResponseEntityExceptionHandler() {
         return ResponseEntity
             .status(BAD_REQUEST)
             .body(illegalArgumentException.message)
-    }
-
-    // Exceptions non gérées
-    @ExceptionHandler(Throwable::class)
-    fun handleThrowable(
-        throwable: Throwable,
-    ): ResponseEntity<*> {
-        return ResponseEntity
-            .status(INTERNAL_SERVER_ERROR)
-            // Par mesure de précaution, on ne retourne pas le message
-            // d'erreur parce qu'il peut contenir des informations sensibles
-            .body(INTERNAL_SERVER_ERROR)
     }
 }

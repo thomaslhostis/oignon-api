@@ -24,7 +24,7 @@ class MongoDbFunctionalTests {
         private val contextCleaner: ContextCleaner,
     ) {
         @Before
-        fun beforeEveryScenario() {
+        fun beforeEachScenario() {
             contextCleaner.cleanup()
         }
     }
