@@ -1,8 +1,8 @@
 package com.oignonapi.functionaltests.glue.features.trainstations
 
 import com.oignonapi.domain.trainstations.TrainStation
+import com.oignonapi.presentation.model.TrainStationResponse
 import com.oignonapi.presentation.trainstations.TrainStationRequest
-import com.oignonapi.presentation.trainstations.TrainStationResponse
 import org.springframework.stereotype.Component
 
 @Component

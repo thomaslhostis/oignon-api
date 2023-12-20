@@ -1,9 +1,9 @@
 package com.oignonapi.functionaltests.glue.features.trainstations
 
 import com.oignonapi.functionaltests.glue.commons.TestContext
+import com.oignonapi.presentation.model.TrainStationResponse
 import com.oignonapi.presentation.trainstations.TrainDepartureResponse
 import com.oignonapi.presentation.trainstations.TrainStationRequest
-import com.oignonapi.presentation.trainstations.TrainStationResponse
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpMethod.PUT
 import org.springframework.http.ResponseEntity

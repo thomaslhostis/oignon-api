@@ -3,7 +3,7 @@ package com.oignonapi.functionaltests.glue.features.trainstations
 import com.oignonapi.domain.trainstations.TrainStation
 import com.oignonapi.domain.trainstations.TrainStationNominals.trainStationNominal
 import com.oignonapi.functionaltests.glue.commons.TestContext
-import com.oignonapi.presentation.trainstations.TrainStationResponse
+import com.oignonapi.presentation.model.TrainStationResponse
 import io.cucumber.java.DataTableType
 import io.cucumber.java.fr.Alors
 import io.cucumber.java.fr.Lorsque

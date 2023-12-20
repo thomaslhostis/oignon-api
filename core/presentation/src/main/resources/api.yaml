@@ -1,0 +1,41 @@
+openapi: 3.0.3
+
+info:
+  title: Description de l'API OignonAPI
+  version: 0.0.1-SNAPSHOT
+
+paths:
+  /train-stations:
+
+    get:
+      operationId: getTrainStations
+      summary: Récupère le référentiel des stations de trains
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TrainStationResponse'
+
+
+#    put:
+#      summary: Met à jour le référentiel des stations de trains
+#
+#  /train-stations/{trainStationId}/upcoming-departures:
+#    get:
+#      summary: Récupère les prochains départs d'une station de train
+
+components:
+  schemas:
+    TrainStationResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Identifiant de la station de trains
+        name:
+          type: string
+          description: Nom de la station de trains
