@@ -67,6 +67,9 @@
                                 <interfaceOnly>true</interfaceOnly>
                                 <skipDefaultInterface>true</skipDefaultInterface>
                             </configOptions>
+                            <typeMappings>
+                                <typeMapping>DateTime=java.time.ZonedDateTime</typeMapping>
+                            </typeMappings>
                         </configuration>
                     </execution>
                 </executions>

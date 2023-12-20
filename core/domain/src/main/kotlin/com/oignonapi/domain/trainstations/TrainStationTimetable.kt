@@ -1,6 +1,6 @@
 package com.oignonapi.domain.trainstations
 
-import java.time.OffsetDateTime
+import java.time.ZonedDateTime
 
 class TrainStationTimetable(
     val trainStation: TrainStation,
@@ -8,6 +8,6 @@ class TrainStationTimetable(
 ) {
     class TrainDeparture(
         val trainNumber: String,
-        val departureTime: OffsetDateTime,
+        val departureTime: ZonedDateTime,
     )
 }
