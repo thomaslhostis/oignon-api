@@ -11,7 +11,7 @@ import io.cucumber.java.fr.Étantdonnéque
 import io.kotest.matchers.shouldBe
 import org.springframework.http.HttpMethod.GET
 import java.time.LocalDate
-import java.time.OffsetDateTime
+import java.time.ZonedDateTime
 
 class RecupererLesHorairesDeTrainsDUneStationDeTrains(
     private val partnerMocksRecord: PartnerMocksRecord,
@@ -73,7 +73,7 @@ class RecupererLesHorairesDeTrainsDUneStationDeTrains(
         trainStationUpcomingDepartures
             .map(TrainDepartureResponse::departureTime)
             .filter { departureTime ->
-                departureTime.isBefore(OffsetDateTime.now())
+                departureTime.isBefore(ZonedDateTime.now())
             }.size shouldBe 0
     }
 }
