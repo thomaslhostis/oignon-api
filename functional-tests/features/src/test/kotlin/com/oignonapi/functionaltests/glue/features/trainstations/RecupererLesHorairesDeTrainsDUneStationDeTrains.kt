@@ -4,7 +4,7 @@ import com.oignonapi.functionaltests.glue.commons.TestContext
 import com.oignonapi.functionaltests.glue.mocks.PartnerMock.Factory.buildPartnerMockThatCouldFail
 import com.oignonapi.functionaltests.glue.mocks.PartnerMocksRecord
 import com.oignonapi.infrastructure.nominals.XyzTrainDepartureResponseNominals.xyzTrainDepartureResponseNominal
-import com.oignonapi.presentation.trainstations.TrainDepartureResponse
+import com.oignonapi.presentation.trainstations.model.TrainDepartureResponse
 import io.cucumber.java.fr.Alors
 import io.cucumber.java.fr.Lorsque
 import io.cucumber.java.fr.Étantdonnéque
@@ -67,6 +67,7 @@ class RecupererLesHorairesDeTrainsDUneStationDeTrains(
     @Alors("je reçois les prochains départs de cette station de trains")
     fun `je reçois les prochains départs de cette station de trains`() {
         testContext.assertStatusIsOk()
+
         val trainStationUpcomingDepartures = testContext.getResponseBodyAsListOf(TrainDepartureResponse::class)
 
         trainStationUpcomingDepartures

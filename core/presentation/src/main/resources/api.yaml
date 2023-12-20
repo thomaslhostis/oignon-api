@@ -16,22 +16,54 @@ paths:
           content:
             application/json:
               schema:
+                $ref: '#/components/schemas/TrainStationResources'
+
+    put:
+      operationId: uploadTrainStations
+      summary: Met à jour le référentiel des stations de trains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrainStationResources'
+      responses:
+        204:
+          description: OK
+
+  /train-stations/{trainStationId}/upcoming-departures:
+    get:
+      operationId: getTrainStationUpcomingDepartures
+      summary: Récupère les prochains départs d'une station de trains
+      parameters:
+        - in: path
+          name: trainStationId
+          required: true
+          schema:
+            type: string
+          description: Identifiant de la station de trains dont on souhaite récupérer les prochains départs
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TrainStationResponse'
-
-
-#    put:
-#      summary: Met à jour le référentiel des stations de trains
-#
-#  /train-stations/{trainStationId}/upcoming-departures:
-#    get:
-#      summary: Récupère les prochains départs d'une station de train
+                  $ref: '#/components/schemas/TrainDepartureResponse'
 
 components:
   schemas:
-    TrainStationResponse:
+    TrainStationResources:
+      type: array
+      items:
+        $ref: '#/components/schemas/TrainStationResource'
+
+    TrainStationResource:
       type: object
+      required:
+        - id
+        - name
       properties:
         id:
           type: string
@@ -39,3 +71,17 @@ components:
         name:
           type: string
           description: Nom de la station de trains
+
+    TrainDepartureResponse:
+      type: object
+      required:
+        - trainNumber
+        - departureTime
+      properties:
+        trainNumber:
+          type: string
+          description: Numéro de train
+        departureTime:
+          type: string
+          format: date-time
+          description: Date-heure de départ au format ISO

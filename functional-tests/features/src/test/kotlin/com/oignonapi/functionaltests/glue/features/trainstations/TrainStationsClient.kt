@@ -1,9 +1,8 @@
 package com.oignonapi.functionaltests.glue.features.trainstations
 
 import com.oignonapi.functionaltests.glue.commons.TestContext
-import com.oignonapi.presentation.model.TrainStationResponse
-import com.oignonapi.presentation.trainstations.TrainDepartureResponse
-import com.oignonapi.presentation.trainstations.TrainStationRequest
+import com.oignonapi.presentation.trainstations.model.TrainDepartureResponse
+import com.oignonapi.presentation.trainstations.model.TrainStationResource
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpMethod.PUT
 import org.springframework.http.ResponseEntity
@@ -16,7 +15,7 @@ class TrainStationsClient(
     private val testContext: TestContext,
 ) {
     fun uploadTrainStations(
-        trainStationRequests: List<TrainStationRequest>,
+        trainStationRequests: List<TrainStationResource>,
     ) = testRestTemplate.exchange(
         "/train-stations",
         PUT,
@@ -24,12 +23,13 @@ class TrainStationsClient(
         String::class.java
     )
 
-    fun getTrainStations(): ResponseEntity<Array<TrainStationResponse>> {
+    fun getTrainStations(): ResponseEntity<Array<TrainStationResource>> {
         return testRestTemplate.getForEntity(
             "/train-stations",
-            Array<TrainStationResponse>::class.java
+            Array<TrainStationResource>::class.java
         )
     }
+
     fun getTrainStationUpcomingDepartures(
         trainStationId: String,
     ): ResponseEntity<Array<TrainDepartureResponse>> {
