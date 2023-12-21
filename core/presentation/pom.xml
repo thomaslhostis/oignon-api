@@ -24,24 +24,6 @@
         <dependency>
             <groupId>org.openapitools</groupId>
             <artifactId>openapi-generator-maven-plugin</artifactId>
-            <version>7.1.0</version>
-            <exclusions>
-                <!-- Vulnérabilité -->
-                <exclusion>
-                    <groupId>org.codehaus.plexus</groupId>
-                    <artifactId>plexus-utils</artifactId>
-                </exclusion>
-                <!-- https://stackoverflow.com/questions/76706612/standard-commons-logging-discovery-in-action-with-spring-jcl -->
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-                <!-- SLF4J: Class path contains multiple SLF4J providers -->
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-simple</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
@@ -50,26 +32,14 @@
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>7.1.0</version>
                 <executions>
                     <execution>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
                         <configuration>
                             <inputSpec>${basedir}/src/main/resources/train-stations-api.yml</inputSpec>
-                            <generatorName>kotlin-spring</generatorName>
                             <configOptions>
-                                <sourceFolder>src/main/kotlin</sourceFolder>
-                                <useSpringBoot3>true</useSpringBoot3>
                                 <apiPackage>com.oignonapi.presentation.trainstations</apiPackage>
                                 <modelPackage>com.oignonapi.presentation.trainstations.model</modelPackage>
-                                <interfaceOnly>true</interfaceOnly>
-                                <skipDefaultInterface>true</skipDefaultInterface>
                             </configOptions>
-                            <typeMappings>
-                                <typeMapping>DateTime=java.time.ZonedDateTime</typeMapping>
-                            </typeMappings>
                         </configuration>
                     </execution>
                 </executions>
