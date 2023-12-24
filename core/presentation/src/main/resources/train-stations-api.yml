@@ -17,7 +17,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TrainStationResources'
-        default:
+        500:
           description: Erreur inattendue
 
     put:
@@ -34,7 +34,7 @@ paths:
           description: OK
         400:
           description: L'identifiant de chaque station de trains doit être unique
-        default:
+        500:
           description: Erreur inattendue
 
   /train-stations/{trainStationId}/upcoming-departures:
@@ -57,7 +57,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/TrainDepartureResponse'
-        default:
+        500:
           description: Erreur inattendue
 
 components:
