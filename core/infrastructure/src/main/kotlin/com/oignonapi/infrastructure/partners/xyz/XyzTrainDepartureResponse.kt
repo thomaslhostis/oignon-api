@@ -11,8 +11,6 @@ data class XyzTrainDepartureResponse(
 ) {
     fun mapToTrainDeparture() = TrainDeparture(
         trainCode,
-        departureTime
-            .atZone(departureZoneId)
-            .toOffsetDateTime()
+        departureTime.atZone(departureZoneId)
     )
 }

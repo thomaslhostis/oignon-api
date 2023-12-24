@@ -36,6 +36,8 @@
         <kotest.version>5.8.0</kotest.version>
         <mongo-java-server.version>1.44.0</mongo-java-server.version>
         <okhttp.version>4.12.0</okhttp.version>
+        <!-- Version de plugins -->
+        <openapi-generator-maven-plugin.version>7.1.0</openapi-generator-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -151,6 +153,28 @@
                 <version>${okhttp.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>${openapi-generator-maven-plugin.version}</version>
+                <exclusions>
+                    <!-- Vulnérabilité -->
+                    <exclusion>
+                        <groupId>org.codehaus.plexus</groupId>
+                        <artifactId>plexus-utils</artifactId>
+                    </exclusion>
+                    <!-- https://stackoverflow.com/questions/76706612/standard-commons-logging-discovery-in-action-with-spring-jcl -->
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                    <!-- SLF4J: Class path contains multiple SLF4J providers -->
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -178,5 +202,34 @@
                 </dependencies>
             </plugin>
         </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.openapitools</groupId>
+                    <artifactId>openapi-generator-maven-plugin</artifactId>
+                    <version>${openapi-generator-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                            <configuration>
+                                <generatorName>kotlin-spring</generatorName>
+                                <configOptions>
+                                    <sourceFolder>src/main/kotlin</sourceFolder>
+                                    <useSpringBoot3>true</useSpringBoot3>
+                                    <interfaceOnly>true</interfaceOnly>
+                                    <skipDefaultInterface>true</skipDefaultInterface>
+                                </configOptions>
+                                <typeMappings>
+                                    <typeMapping>DateTime=java.time.ZonedDateTime</typeMapping>
+                                </typeMappings>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>

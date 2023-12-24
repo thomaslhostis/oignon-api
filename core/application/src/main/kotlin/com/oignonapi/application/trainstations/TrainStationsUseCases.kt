@@ -4,7 +4,7 @@ import com.oignonapi.domain.trainstations.TrainStation
 import com.oignonapi.domain.trainstations.TrainStationTimetable.TrainDeparture
 import com.oignonapi.domain.trainstations.TrainStationsPort
 import org.springframework.stereotype.Component
-import java.time.OffsetDateTime
+import java.time.ZonedDateTime
 
 @Component
 class TrainStationsUseCases(
@@ -26,7 +26,7 @@ class TrainStationsUseCases(
             .findTrainStationTimetable(trainStationId)
             .dailyTrainDepartures
             .filter { trainDeparture ->
-                trainDeparture.departureTime.isAfter(OffsetDateTime.now())
+                trainDeparture.departureTime.isAfter(ZonedDateTime.now())
             }
     }
 }

@@ -1,0 +1,95 @@
+openapi: 3.0.3
+
+info:
+  title: Description de l'API OignonAPI
+  version: 0.0.1-SNAPSHOT
+
+paths:
+  /train-stations:
+
+    get:
+      operationId: getTrainStations
+      summary: Récupère le référentiel des stations de trains
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrainStationResources'
+        500:
+          description: Erreur inattendue
+
+    put:
+      operationId: uploadTrainStations
+      summary: Met à jour le référentiel des stations de trains
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrainStationResources'
+      responses:
+        204:
+          description: OK
+        400:
+          description: L'identifiant de chaque station de trains doit être unique
+        500:
+          description: Erreur inattendue
+
+  /train-stations/{trainStationId}/upcoming-departures:
+    get:
+      operationId: getTrainStationUpcomingDepartures
+      summary: Récupère les prochains départs d'une station de trains
+      parameters:
+        - in: path
+          name: trainStationId
+          required: true
+          schema:
+            type: string
+          description: Identifiant de la station de trains dont on souhaite récupérer les prochains départs
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TrainDepartureResponse'
+        500:
+          description: Erreur inattendue
+
+components:
+  schemas:
+    TrainStationResources:
+      type: array
+      items:
+        $ref: '#/components/schemas/TrainStationResource'
+
+    TrainStationResource:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          description: Identifiant de la station de trains
+        name:
+          type: string
+          description: Nom de la station de trains
+
+    TrainDepartureResponse:
+      type: object
+      required:
+        - trainNumber
+        - departureTime
+      properties:
+        trainNumber:
+          type: string
+          description: Numéro de train
+        departureTime:
+          type: string
+          format: date-time
+          description: Date-heure de départ au format ISO

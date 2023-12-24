@@ -3,7 +3,7 @@ package com.oignonapi.functionaltests.glue.features.trainstations
 import com.oignonapi.domain.trainstations.TrainStation
 import com.oignonapi.domain.trainstations.TrainStationNominals.trainStationNominal
 import com.oignonapi.functionaltests.glue.commons.TestContext
-import com.oignonapi.presentation.trainstations.TrainStationResponse
+import com.oignonapi.presentation.trainstations.model.TrainStationResource
 import io.cucumber.java.DataTableType
 import io.cucumber.java.fr.Alors
 import io.cucumber.java.fr.Lorsque
@@ -18,8 +18,8 @@ class GererLeReferentielDeStationsDeTrains(
     private val testContext: TestContext,
 ) {
     private fun buildAndUploadTrainStations(shouldFail: String? = null) {
-        val trainStationRequests = trainStationsRecord.buildTrainStationRequests()
-        testContext.responseEntity = trainStationsClient.uploadTrainStations(trainStationRequests)
+        val trainStationResources = trainStationsRecord.buildTrainStationRessources()
+        testContext.responseEntity = trainStationsClient.uploadTrainStations(trainStationResources)
         if (shouldFail == null) {
             testContext.assertStatus(NO_CONTENT)
         }
@@ -56,8 +56,8 @@ class GererLeReferentielDeStationsDeTrains(
     @Alors("je reçois ces stations de trains")
     fun `je reçois ces stations de trains`() {
         testContext.assertStatusIsOk()
-        val expectedTrainStationResponses = trainStationsRecord.buildTrainStationResponses()
-        val actualTrainStationResponses = testContext.getResponseBodyAsListOf(TrainStationResponse::class)
-        expectedTrainStationResponses shouldContainExactlyInAnyOrder actualTrainStationResponses
+        val expectedTrainStationResources = trainStationsRecord.buildTrainStationRessources()
+        val actualTrainStationResources = testContext.getResponseBodyAsListOf(TrainStationResource::class)
+        expectedTrainStationResources shouldContainExactlyInAnyOrder actualTrainStationResources
     }
 }

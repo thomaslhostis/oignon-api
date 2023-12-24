@@ -2,37 +2,46 @@ package com.oignonapi.presentation.trainstations
 
 import com.oignonapi.application.trainstations.TrainStationsUseCases
 import com.oignonapi.domain.trainstations.TrainStationsPort
-import org.springframework.http.HttpStatus.NO_CONTENT
-import org.springframework.web.bind.annotation.*
+import com.oignonapi.presentation.trainstations.model.TrainDepartureResponse
+import com.oignonapi.presentation.trainstations.model.TrainStationResource
+import com.oignonapi.presentation.trainstations.model.extensions.TrainDepartureResponse
+import com.oignonapi.presentation.trainstations.model.extensions.TrainStationResource
+import com.oignonapi.presentation.trainstations.model.extensions.mapToDomainInstance
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("train-stations")
 class TrainStationsController(
     private val trainStationsPort: TrainStationsPort,
     private val trainStationsUseCases: TrainStationsUseCases,
-) {
-    @GetMapping
-    fun getTrainStations(): List<TrainStationResponse> {
-        return trainStationsPort
+) : TrainStationsApi {
+
+    override fun getTrainStations(): ResponseEntity<List<TrainStationResource>> {
+        val trainStationResponses = trainStationsPort
             .findTrainStations()
-            .map(::TrainStationResponse)
+            .map(::TrainStationResource)
+
+        return ResponseEntity.ok(trainStationResponses)
     }
 
-    @PutMapping
-    @ResponseStatus(NO_CONTENT)
-    fun uploadTrainStations(
-        @RequestBody trainStationRequests: List<TrainStationRequest>,
-    ) {
-        val trainStations = trainStationRequests.map(TrainStationRequest::mapToDomainInstance)
+    override fun uploadTrainStations(
+        trainStationResources: List<TrainStationResource>,
+    ): ResponseEntity<Unit> {
+        val trainStations = trainStationResources
+            .map(TrainStationResource::mapToDomainInstance)
+
         trainStationsUseCases.saveTrainStations(trainStations)
+
+        return ResponseEntity.noContent().build()
     }
 
-    @GetMapping("{trainStationId}/upcoming-departures")
-    fun getTrainStationUpcomingDepartures(
-        @PathVariable("trainStationId") trainStationId: String,
-    ): List<TrainDepartureResponse> {
-        return trainStationsUseCases
+    override fun getTrainStationUpcomingDepartures(
+        trainStationId: String,
+    ): ResponseEntity<List<TrainDepartureResponse>> {
+        val trainStationUpcomingDepartures = trainStationsUseCases
             .findTrainStationUpcomingDepartures(trainStationId)
             .map(::TrainDepartureResponse)
+
+        return ResponseEntity.ok(trainStationUpcomingDepartures)
     }
 }

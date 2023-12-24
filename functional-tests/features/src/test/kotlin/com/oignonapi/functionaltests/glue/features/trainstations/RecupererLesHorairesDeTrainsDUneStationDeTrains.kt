@@ -4,14 +4,14 @@ import com.oignonapi.functionaltests.glue.commons.TestContext
 import com.oignonapi.functionaltests.glue.mocks.PartnerMock.Factory.buildPartnerMockThatCouldFail
 import com.oignonapi.functionaltests.glue.mocks.PartnerMocksRecord
 import com.oignonapi.infrastructure.nominals.XyzTrainDepartureResponseNominals.xyzTrainDepartureResponseNominal
-import com.oignonapi.presentation.trainstations.TrainDepartureResponse
+import com.oignonapi.presentation.trainstations.model.TrainDepartureResponse
 import io.cucumber.java.fr.Alors
 import io.cucumber.java.fr.Lorsque
 import io.cucumber.java.fr.Étantdonnéque
 import io.kotest.matchers.shouldBe
 import org.springframework.http.HttpMethod.GET
 import java.time.LocalDate
-import java.time.OffsetDateTime
+import java.time.ZonedDateTime
 
 class RecupererLesHorairesDeTrainsDUneStationDeTrains(
     private val partnerMocksRecord: PartnerMocksRecord,
@@ -67,12 +67,13 @@ class RecupererLesHorairesDeTrainsDUneStationDeTrains(
     @Alors("je reçois les prochains départs de cette station de trains")
     fun `je reçois les prochains départs de cette station de trains`() {
         testContext.assertStatusIsOk()
+
         val trainStationUpcomingDepartures = testContext.getResponseBodyAsListOf(TrainDepartureResponse::class)
 
         trainStationUpcomingDepartures
             .map(TrainDepartureResponse::departureTime)
             .filter { departureTime ->
-                departureTime.isBefore(OffsetDateTime.now())
+                departureTime.isBefore(ZonedDateTime.now())
             }.size shouldBe 0
     }
 }
