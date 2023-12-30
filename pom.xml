@@ -36,6 +36,7 @@
         <kotest.version>5.8.0</kotest.version>
         <mongo-java-server.version>1.44.0</mongo-java-server.version>
         <okhttp.version>4.12.0</okhttp.version>
+        <rest-assured.version>5.4.0</rest-assured.version>
         <!-- Version de plugins -->
         <openapi-generator-maven-plugin.version>7.2.0</openapi-generator-maven-plugin.version>
     </properties>
@@ -112,6 +113,28 @@
                 <version>${mongo-java-server.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>${openapi-generator-maven-plugin.version}</version>
+                <exclusions>
+                    <!-- Vulnérabilité -->
+                    <exclusion>
+                        <groupId>org.codehaus.plexus</groupId>
+                        <artifactId>plexus-utils</artifactId>
+                    </exclusion>
+                    <!-- https://stackoverflow.com/questions/76706612/standard-commons-logging-discovery-in-action-with-spring-jcl -->
+                    <exclusion>
+                        <groupId>commons-logging</groupId>
+                        <artifactId>commons-logging</artifactId>
+                    </exclusion>
+                    <!-- SLF4J: Class path contains multiple SLF4J providers -->
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-simple</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
                 <groupId>org.junit.platform</groupId>
                 <artifactId>junit-platform-suite</artifactId>
                 <version>${junit-platform-suite.version}</version>
@@ -154,26 +177,10 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>${openapi-generator-maven-plugin.version}</version>
-                <exclusions>
-                    <!-- Vulnérabilité -->
-                    <exclusion>
-                        <groupId>org.codehaus.plexus</groupId>
-                        <artifactId>plexus-utils</artifactId>
-                    </exclusion>
-                    <!-- https://stackoverflow.com/questions/76706612/standard-commons-logging-discovery-in-action-with-spring-jcl -->
-                    <exclusion>
-                        <groupId>commons-logging</groupId>
-                        <artifactId>commons-logging</artifactId>
-                    </exclusion>
-                    <!-- SLF4J: Class path contains multiple SLF4J providers -->
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-simple</artifactId>
-                    </exclusion>
-                </exclusions>
+                <groupId>io.rest-assured</groupId>
+                <artifactId>rest-assured</artifactId>
+                <version>${rest-assured.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
