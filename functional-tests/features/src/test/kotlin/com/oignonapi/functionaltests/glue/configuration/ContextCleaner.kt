@@ -4,7 +4,6 @@ import com.oignonapi.functionaltests.glue.features.trainstations.TrainStationsRe
 import com.oignonapi.functionaltests.glue.mocks.PartnerMocksRecord
 import org.springframework.data.mongodb.core.MongoTemplate
 import org.springframework.stereotype.Component
-import org.springframework.web.client.RestTemplate
 
 /**
  * Cette classe contient la réinitialisation du contexte des tests fonctionnels. Le but est de ne
@@ -13,18 +12,14 @@ import org.springframework.web.client.RestTemplate
  */
 @Component
 class ContextCleaner(
-    private val testRestTemplate: RestTemplate,
     private val mongoTemplate: MongoTemplate,
     private val partnerMocksRecord: PartnerMocksRecord,
     private val trainStationsRecord: TrainStationsRecord,
 ) {
     fun cleanup() {
-        testRestTemplate.interceptors = emptyList()
-
         for (collectionName in mongoTemplate.collectionNames) {
             mongoTemplate.getCollection(collectionName).drop()
         }
-
         partnerMocksRecord.reset()
         trainStationsRecord.reset()
     }

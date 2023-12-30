@@ -2,6 +2,7 @@ package com.oignonapi.functionaltests.mongodbintegration
 
 import com.oignonapi.OignonApi
 import com.oignonapi.functionaltests.glue.configuration.ContextCleaner
+import com.oignonapi.functionaltests.glue.configuration.RestAssuredConfiguration
 import io.cucumber.core.options.Constants.*
 import io.cucumber.java.Before
 import io.cucumber.spring.CucumberContextConfiguration
@@ -10,6 +11,7 @@ import org.junit.platform.suite.api.IncludeEngines
 import org.junit.platform.suite.api.Suite
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT
+import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.test.context.ActiveProfiles
 
 @Suite
@@ -25,10 +27,15 @@ class MongoDbFunctionalTests {
     @CucumberContextConfiguration
     @ActiveProfiles(value = ["features", "mongo"])
     class CucumberSpringConfiguration(
+        private val restAssuredConfiguration: RestAssuredConfiguration,
         private val contextCleaner: ContextCleaner,
     ) {
+        @LocalServerPort
+        private val port: Int = 0
+
         @Before
         fun beforeEachScenario() {
+            restAssuredConfiguration.setup(port)
             contextCleaner.cleanup()
         }
     }

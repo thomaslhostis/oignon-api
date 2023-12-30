@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component
  *
  * Exemple d'utilisation. Dans un premier temps, définir le bouchon :
  *
- *     partnerMocksHistory.addPartnerMock(
+ *     partnerMocksRecord.addPartnerMock(
  *         PartnerMock(
  *             containedUrl = "...",
  *             returnedBodyAsObject = ...
@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component
  *
  * Puis, juste avant l'appel au backend MBG :
  *
- *     mockWebServer.dispatcher = partnerMocksHistory.buildDispatcher()
+ *     mockWebServer.dispatcher = partnerMocksRecord.buildDispatcher()
  *
  */
 @Component

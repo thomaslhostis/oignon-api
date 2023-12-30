@@ -19,7 +19,7 @@ class GererLeReferentielDeStationsDeTrains(
 ) {
     private fun buildAndUploadTrainStations(shouldFail: String? = null) {
         val trainStationResources = trainStationsRecord.buildTrainStationRessources()
-        testContext.responseEntity = trainStationsClient.uploadTrainStations(trainStationResources)
+        testContext.response = trainStationsClient.uploadTrainStations(trainStationResources)
         if (shouldFail == null) {
             testContext.assertStatus(NO_CONTENT)
         }
@@ -48,9 +48,10 @@ class GererLeReferentielDeStationsDeTrains(
         buildAndUploadTrainStations(shouldFail)
     }
 
+
     @Lorsque("je récupère le référentiel des stations de trains")
     fun `je récupère le référentiel des stations de trains`() {
-        testContext.responseEntity = trainStationsClient.getTrainStations()
+        testContext.response = trainStationsClient.getTrainStations()
     }
 
     @Alors("je reçois ces stations de trains")

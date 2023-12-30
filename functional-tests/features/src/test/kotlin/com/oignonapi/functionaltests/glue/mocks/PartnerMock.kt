@@ -12,7 +12,7 @@ import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
  *
  * Exemples d'utilisation :
  *
- *     partnerMocksHistory.addPartnerMock(
+ *     partnerMocksRecord.addPartnerMock(
  *         PartnerMock(
  *             containedUrl = "/mon-service-partenaire-1",
  *             returnedBodyAsObject = MyPartnerResponse(...),
@@ -20,7 +20,7 @@ import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
  *         )
  *     )
  *
- *     partnerMocksHistory.addPartnerMock(
+ *     partnerMocksRecord.addPartnerMock(
  *         PartnerMock(
  *             containedUrl = "/mon-service-partenaire-2",
  *             completeMockResponse = MockResponse().setResponseCode(SERVICE_UNAVAILABLE.value())

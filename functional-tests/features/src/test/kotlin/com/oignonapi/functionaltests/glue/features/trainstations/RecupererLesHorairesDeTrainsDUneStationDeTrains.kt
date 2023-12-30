@@ -61,14 +61,16 @@ class RecupererLesHorairesDeTrainsDUneStationDeTrains(
     @Lorsque("je récupère les prochains départs de cette station de trains")
     fun `je récupère les prochains départs de cette station de trains`() {
         val trainStationId = trainStationsRecord.findLastTrainStationId()
-        testContext.responseEntity = trainStationsClient.getTrainStationUpcomingDepartures(trainStationId)
+        testContext.response = trainStationsClient.getTrainStationUpcomingDepartures(trainStationId)
     }
 
     @Alors("je reçois les prochains départs de cette station de trains")
     fun `je reçois les prochains départs de cette station de trains`() {
         testContext.assertStatusIsOk()
 
-        val trainStationUpcomingDepartures = testContext.getResponseBodyAsListOf(TrainDepartureResponse::class)
+        val trainStationUpcomingDepartures = testContext.getResponseBodyAsListOf(
+            TrainDepartureResponse::class
+        )
 
         trainStationUpcomingDepartures
             .map(TrainDepartureResponse::departureTime)
