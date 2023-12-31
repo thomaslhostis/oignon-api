@@ -17,7 +17,7 @@ import java.time.Duration
  * `PartnerMocksRecord` et sont déclenchés juste avant l'appel à
  * l'API MBG via :
  *
- *     mockWebServer.dispatcher = partnerMocksHistory.buildDispatcher()
+ *     mockWebServer.dispatcher = partnerMocksRecord.buildDispatcher()
  */
 @Configuration
 class WebClientMockConfiguration {
