@@ -1,6 +1,6 @@
 ![https://github.com/thomaslhostis/oignon-api/actions/workflows/continuous-testing.yml](https://github.com/thomaslhostis/oignon-api/workflows/Continuous%20testing/badge.svg)
 
-Ce petit projet a pour but de présenter une évolution de l'architecture hexagonale, appelée architecture "en oignon", dans le cadre d'une API Web, au travers d'un cas d'utilisation très simple qui met en avant la pertinence de ce type d'architecture.
+Ce petit projet a pour but de présenter un type d'architecture hexagonale, appelée architecture "en oignon", dans le cadre d'une API Web, au travers d'un cas d'utilisation très simple qui met en avant la pertinence de ce type d'architecture.
 
 * [ ] Destinataire
 * [ ] POJO/Programmation objet
@@ -27,13 +27,13 @@ La couche Domaine contient aussi la définition des *ports* implémentés dans l
 
 ### Application
 
-La couche Application contient la logique applicative, c'est-à-dire les cas d'utilisation fonctionnels. Le domaine contient la définition des entités, la couche Application agrège ces entités.
+La couche Application contient la logique applicative, c'est-à-dire les cas d'utilisation fonctionnels. Le domaine contient la définition des entités métier, la couche Application agrège ces entités.
 
 Prenons l'exemple de la création d'un compte utilisateur. L'entité Utilisateur est définie dans le domaine. Cette entité n'a connaissance que de ses propriétés : nom, prénom, adresse, numéro de téléphone. Si je veux, par exemple, appliquer une règle métier sur le format du numéro de téléphone, je peux le faire dans l'entité Utilisateur, c'est-à-dire dans le domaine.
 
-En revanche, si je veux vérifier que le nom de l'utilisateur n'est pas déjà utilisé par un autre, je dois avoir connaissance de tous les utilisateurs. C'est dans la couche Application que je vais récupérer la liste des utilisateurs existants - via un *port* - pour vérifier que le nom de celui que je veux enregistrer n'est pas déjà pris.
+En revanche, si je veux vérifier que le nom de l'utilisateur n'est pas déjà pris par un autre, je dois avoir connaissance de tous les utilisateurs. C'est dans la couche Application que je vais récupérer la liste des utilisateurs existants - via un *port* - pour vérifier que le nom de celui que je veux enregistrer n'est pas déjà utilisé.
 
-Ce cas d'utilisation peut s'appeler "Créer un compte utilisateur" et l'une des règles à implémenter : vérifier que le nom d'utilisateur n'est pas déjà pris.
+Ce cas d'utilisation peut s'appeler "Créer un compte utilisateur", la fonction `createUserAccount` et l'une des règles à implémenter : vérifier que le nom d'utilisateur n'est pas déjà pris.
 
 ### Présentation
 
