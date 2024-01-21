@@ -29,7 +29,7 @@ import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
  *
  * Lors de la création d'une nouvelle classe d'appel au partenaire dans la
  * couche infrastructure, ne pas oublier d'ajouter un Bean dans la classe
- * `WebClientMockConfiguration` afin de lui injecter le WebClient bouchonné.
+ * `RestClientMockConfiguration` afin de lui injecter le RestClient bouchonné.
  *
  * @param expectedUrlEquals URL complète du service partenaire que l'on souhaite bouchonner
  * @param expectedUrlContains URL partielle du service partenaire que l'on souhaite bouchonner
