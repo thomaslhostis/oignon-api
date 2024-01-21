@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 @Component
 class TrainStationsAdapter(
     private val trainStationsMongoRepository: TrainStationsMongoRepository,
-    private val xyzClient: XyzClient,
+    private val xyzRestClient: XyzClient,
 ) : TrainStationsPort {
     override fun saveTrainStations(trainStations: List<TrainStation>) {
         val trainStationDocuments = trainStations.map(::TrainStationDocument)
@@ -27,8 +27,8 @@ class TrainStationsAdapter(
 
     override fun findTrainStationTimetable(trainStationId: String): TrainStationTimetable {
         val trainStation = findTrainStation(trainStationId)
-        val dailyDepartureTimes = xyzClient
-            .findDailyDepartureTimes(trainStationId)
+        val dailyDepartureTimes = xyzRestClient
+            .getDailyDepartureTimes(trainStationId)
             .map(XyzTrainDepartureResponse::mapToTrainDeparture)
 
         return TrainStationTimetable(

@@ -4,7 +4,10 @@ import com.oignonapi.infrastructure.partners.xyz.XyzClient
 import okhttp3.mockwebserver.MockWebServer
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Primary
 import org.springframework.web.client.RestClient
+import org.springframework.web.client.support.RestClientAdapter
+import org.springframework.web.service.invoker.HttpServiceProxyFactory
 
 /**
  * Cette classe utilise l'injection de dépendances Spring pour bouchonner le WebClient
@@ -22,13 +25,12 @@ class RestClientMockConfiguration {
     fun mockWebServer() = MockWebServer()
 
     @Bean
-    fun restClient(mockWebServer: MockWebServer): RestClient {
+    @Primary
+    fun xyzRestClient(mockWebServer: MockWebServer): XyzClient {
         val baseUrl = mockWebServer.url("").toString()
-        return RestClient.builder()
-            .baseUrl(baseUrl)
-            .build()
+        val restClient = RestClient.builder().baseUrl(baseUrl).build()
+        val restClientAdapter = RestClientAdapter.create(restClient)
+        val httpServiceProxyFactory = HttpServiceProxyFactory.builderFor(restClientAdapter).build()
+        return httpServiceProxyFactory.createClient(XyzClient::class.java)
     }
-
-    @Bean
-    fun xyzClient(restClient: RestClient) = XyzClient(restClient)
 }
