@@ -76,6 +76,8 @@ Dans l'ordre :
 3. Spring Boot sait qu'il doit exécuter le code de l'adapter (Infrastructure) qui implémente ce port
 4. La donnée fait ensuite le chemin inverse
 
+![](documentation/images/parcours.png)
+
 # Questions fréquemment posées
 
 > Pourquoi une forme d'hexagone ?
