@@ -21,7 +21,9 @@ Ce petit projet a pour but de présenter un type d'architecture hexagonale, auss
 
 ### Présentation
 
-Cette couche contient tout ce qui impacte l'exposition de l'API : la déclaration des points d'entrée, des controllers, de l'authentification, le format des entrées-sorties, etc.
+Cette couche contient tout ce qui impacte l'exposition de l'API : la déclaration des controllers, de l'authentification, le format des entrées-sorties, etc.
+
+Par exemple, c'est ici que l'on va définir notre contrat d'interface au format OpenAPI, les points d'entrée, le modèle d'entrées-sorties (que l'on peut appeler Requests/Responses, Resources, Inputs/Outputs, etc.)
 
 ### Application
 
@@ -41,9 +43,9 @@ La couche Domaine contient aussi la définition des *ports* implémentés dans l
 
 ### Infrastructure
 
-Cette couche contient Infrastructure l'accès aux *partenaires*, qu'ils soient une base de données, un service Web, etc.
+Cette couche contient l'accès aux *partenaires*, qu'ils soient une base de données, un service Web, etc.
 
-Les couches Application et Domaine manipulent des notions fonctionnelles ou métier. La couche Infrastructure utilise les technologies qui permettent d'accéder aux données qu'il y a derrière ces notions fonctionnelles
+Les couches Application et Domaine manipulent des notions fonctionnelles ou métier. La couche Infrastructure utilise les technologies qui permettent d'accéder aux données qu'il y a derrière ces notions fonctionnelles.
 
 L'un des intérêts de cette couche est de pouvoir changer de partenaire (par exemple un service SOAP pour une API, une base de données MySQL pour un MongoDB) sans impacter la logique applicative.
 
@@ -82,7 +84,7 @@ Cela fait référence aux alvéoles des abeilles car, comme dans une ruche, il e
 
 > Quelle est la différence entre architecture hexagonale et architecture en oignon ?
 
-Réponse : la couche Application. L'architecture en oignon est une évolution de l'architecture hexagonale qui, elle, ne contient pas de couche intermédiaire entre la couche Présentation et la couche Domaine.
+La couche Application. L'architecture en oignon est une évolution de l'architecture hexagonale qui, elle, ne contient pas de couche intermédiaire entre la couche Présentation et la couche Domaine.
 
 # Références
 
