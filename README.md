@@ -82,11 +82,11 @@ Dans l'ordre :
 
 > Pourquoi une forme d'hexagone ?
 
-Cela fait référence aux alvéoles des abeilles car, comme dans une ruche, il est possible de les imbriquer.
+Cela fait référence aux alvéoles des abeilles, car il est possible, comme dans une ruche, de les imbriquer.
 
 > Quelle est la différence entre architecture hexagonale et architecture en oignon ?
 
-La couche Application. L'architecture en oignon est une évolution de l'architecture hexagonale qui, elle, ne contient pas de couche intermédiaire entre la couche Présentation et la couche Domaine.
+La couche Application. L'architecture en oignon est une évolution de l'architecture hexagonale qui ne contient pas de couche intermédiaire entre la couche Présentation et la couche Domaine.
 
 # Références
 
