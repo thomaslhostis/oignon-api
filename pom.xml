@@ -29,7 +29,7 @@
         <java.version>17</java.version>
         <kotlin.version>1.9.23</kotlin.version>
         <!-- Version des librairies triées par ordre alphabétique -->
-        <cucumber.version>7.16.1</cucumber.version>
+        <cucumber.version>7.17.0</cucumber.version>
         <jackson-module-kotlin.version>2.17.0</jackson-module-kotlin.version>
         <junit-jupiter.version>5.10.2</junit-jupiter.version>
         <junit-platform-suite.version>1.10.2</junit-platform-suite.version>
