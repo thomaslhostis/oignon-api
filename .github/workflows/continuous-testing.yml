@@ -54,8 +54,7 @@ jobs:
           mvn clean install -DskipTests
           mvn test --projects 'functional-tests/with-mongodb'
 
-  dependabot:
-    name: 'Dependabot'
+  dependabot-auto-merge:
     needs: [unit-tests, functional-tests, functional-tests-with-mongodb]
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}}
