@@ -1,8 +1,5 @@
 name: Continuous testing
 
-permissions:
-  pull-requests: write
-
 on:
   push:
     branches: [ "main" ]
