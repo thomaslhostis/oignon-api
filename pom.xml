@@ -32,7 +32,7 @@
         <cucumber.version>7.21.1</cucumber.version>
         <jackson-module-kotlin.version>2.18.3</jackson-module-kotlin.version>
         <junit-jupiter.version>5.12.1</junit-jupiter.version>
-        <junit-platform-suite.version>1.12.0</junit-platform-suite.version>
+        <junit-platform-suite.version>1.12.1</junit-platform-suite.version>
         <kotest.version>5.9.1</kotest.version>
         <mongo-java-server.version>1.46.0</mongo-java-server.version>
         <okhttp.version>4.12.0</okhttp.version>
