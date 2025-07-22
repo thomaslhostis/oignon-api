@@ -31,7 +31,7 @@
         <!-- Version des librairies triées par ordre alphabétique -->
         <cucumber.version>7.26.0</cucumber.version>
         <jackson-module-kotlin.version>2.19.2</jackson-module-kotlin.version>
-        <junit-jupiter.version>5.13.3</junit-jupiter.version>
+        <junit-jupiter.version>5.13.4</junit-jupiter.version>
         <junit-platform-suite.version>1.13.3</junit-platform-suite.version>
         <kotest.version>5.9.1</kotest.version>
         <mongo-java-server.version>1.47.0</mongo-java-server.version>
