@@ -27,7 +27,7 @@
     <properties>
         <!-- Version de Java et Kotlin -->
         <java.version>17</java.version>
-        <kotlin.version>2.2.20</kotlin.version>
+        <kotlin.version>2.3.0</kotlin.version>
         <!-- Version des librairies triées par ordre alphabétique -->
         <cucumber.version>7.33.0</cucumber.version>
         <jackson-module-kotlin.version>2.20.1</jackson-module-kotlin.version>
