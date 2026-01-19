@@ -30,7 +30,7 @@
         <kotlin.version>2.3.0</kotlin.version>
         <!-- Version des librairies triées par ordre alphabétique -->
         <cucumber.version>7.33.0</cucumber.version>
-        <jackson-module-kotlin.version>2.20.1</jackson-module-kotlin.version>
+        <jackson-module-kotlin.version>2.21.0</jackson-module-kotlin.version>
         <junit-jupiter.version>6.0.2</junit-jupiter.version>
         <junit-platform-suite.version>6.0.2</junit-platform-suite.version>
         <kotest.version>6.0.7</kotest.version>
